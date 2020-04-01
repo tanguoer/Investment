@@ -13,7 +13,6 @@
     <module>investment-domain</module>
     <module>investment-service</module>
     <module>investment-utils</module>
-    <module>investment-utils</module>
   </modules>
   <packaging>pom</packaging>
 

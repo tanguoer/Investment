@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="investment-domain" />
-        <module name="investment-utils" />
-        <module name="investment-dao" />
         <module name="investment-web" />
+        <module name="investment-dao" />
+        <module name="investment-utils" />
         <module name="investment-service" />
+        <module name="investment-domain" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
