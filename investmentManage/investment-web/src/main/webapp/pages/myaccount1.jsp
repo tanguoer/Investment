@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,26 +14,6 @@
             $(".my_tz_table > tbody > tr:odd").addClass("odd-tr");
         })
 
-
-        window.onload = function ()
-        {
-            var oLi = document.getElementById("tab0").getElementsByTagName("li");
-            var oUl = document.getElementById("content0").getElementsByClassName("my_tz_tab1");
-
-            for(var i = 0; i < oLi.length; i++)
-            {
-                oLi[i].index = i;
-                oLi[i].onclick = function ()
-                {
-                    for(var n = 0; n < oLi.length; n++)
-                        oLi[n].className="";
-                    this.className = "current0";
-                    for(var n = 0; n < oUl.length; n++)
-                        oUl[n].style.display = "none";
-                    oUl[this.index].style.display = "block";
-                }
-            }
-        }
     </script>
 </head>
 
@@ -41,83 +22,27 @@
 <jsp:include page="/static/header.jsp"></jsp:include>
 <!-- 页面头部 /-->
 
-<div class="clear"></div>
-<div class="banner0">
-    <div class="ban_my">
-        <div class="ban_my_left">
-            <div class="ban_my_l1"><img src="../images/shape.png" /></div>
-            <div class="ban_my_l2"><img src="../images/headg.png" /></div>
-            <div class="ban_my_l3">王小小<span>上午好</span></div>
-            <div class="ban_my_l4">
-                <div class="left zhaq">账户安全</div>
-                <div class="left anquan"><img src="../images/acc-safe-ico.png" /></div>
-                <div class="left anquan0">中</div>
-                <div class="left" style="color:#ff8900">提升</div>
-            </div>
-        </div>
-        <div class="ban_my_right">
-            <div class="ban_my_right_up">
-                <div class="left">账户总览</div>
-                <div class="right0">2015-10-10星期六</div>
-            </div>
-            <div class="ban_my_right_down">
-                <div class="ban_my_right_down_l">
-                    <div class="ban_my_d">
-                        <div class="ban_my_d1">
-                            <p class="dp1">总资产</p>
-                            <p class="dp2">0.00元</p>
-                        </div>
-                        <div class="ban_my_d1">
-                            <p class="dp1">总资产</p>
-                            <p class="dp2">0.00元</p>
-                        </div>
-                        <div class="ban_my_d1">
-                            <p class="dp1">总资产</p>
-                            <p class="dp2">0.00元</p>
-                        </div>
-                    </div>
-                    <div class="ban_my_d" style=" border-bottom:0">
-                        <div class="ban_my_d1">
-                            <p class="dp1">我的积分</p>
-                            <p class="dp2">0</p>
-                        </div>
-                        <div class="ban_my_d1">
-                            <p class="dp1">红包</p>
-                            <p class="dp2">0个</p>
-                        </div>
-                        <div class="ban_my_d1">
-                            <p class="dp1">累计收益</p>
-                            <p class="dp2">0.00元</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="ban_my_right_down_c"></div>
-                <div class="ban_my_right_down_r">
-                    <div class="my_ban_btn my_ban_btn1">充值</div>
-                    <div class="my_ban_btn my_ban_btn0">投资</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- 用户账户内容头部 -->
+<jsp:include page="/static/account-header.jsp"></jsp:include>
+<!-- 用户账户内容头部 /-->
 
 <div class="main">
     <div class="daohang"><a href="main.jsp">首页</a> > 我的账户</div>
     <div class="dh_line"></div>
     <div class="tunav">
-        <a href="myaccount.jsp"><div class="tunav1 ">
+        <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=0"><div class="tunav1 ">
             <p>充值提现</p>
         </div></a>
-        <a href="myaccount1.jsp"><div class="tunav2 active_nav" style=" height:102px">
+        <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=1&investStatus=0&page=1&pageSize=5"><div class="tunav2 active_nav" style=" height:102px">
             <p>我的投资</p>
         </div></a>
-        <a href="myaccount2.jsp"><div class="tunav3">
+        <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=2&transactionType=0&page=1&pageSize=5"><div class="tunav3">
             <p>资金记录</p>
         </div></a>
-        <a href="myaccount3.jsp"><div class="tunav4">
+        <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=3"><div class="tunav4">
             <p>红包积分</p>
         </div></a>
-        <a href="myaccount4.jsp"><div class="tunav5">
+        <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=4"><div class="tunav5">
             <p>我的邀请</p>
         </div></a>
     </div>
@@ -129,13 +54,14 @@
     <div class="my_tz">
         <div class="my_tz_tab">
             <ul class="my_tz_tab_nav" id="tab0">
-                <li class="current0">全部投资记录</li>
-                <li>申请中的投资</li>
-                <li>持有中的投资</li>
-                <li>已结束的投资</li>
+                <li <c:if test="${investStatus==0}">class="current0"</c:if>><a href="${pageContext.request.contextPath}/account/findInvestment?investStatus=0&page=1&pageSize=5">全部投资记录</a></li>
+                <li <c:if test="${investStatus==1}">class="current0"</c:if>><a href="${pageContext.request.contextPath}/account/findInvestment?investStatus=1&page=1&pageSize=5">申请中的投资</a></li>
+                <li <c:if test="${investStatus==2}">class="current0"</c:if>><a href="${pageContext.request.contextPath}/account/findInvestment?investStatus=2&page=1&pageSize=5">持有中的投资</a></li>
+                <li <c:if test="${investStatus==3}">class="current0"</c:if>><a href="${pageContext.request.contextPath}/account/findInvestment?investStatus=3&page=1&pageSize=5">已结束的投资</a></li>
             </ul>
         </div>
         <div id="content0">
+            <!--投资记录-->
             <div class="my_tz_tab1">
                 <table class="my_hbjf_table">
                     <thead>
@@ -148,275 +74,33 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
+                    <c:forEach items="${pageInfo.list}" var="investment">
+                        <tr>
+                            <td>${investment.productName}</td>
+                            <td>${investment.investmentAmount == null ? 0 : investment.investmentAmount}元</td>
+                            <td>${investment.earnings == null ? 0 : investment.earnings}元</td>
+                            <td>${investment.investmentTimeStr}</td>
+                            <td>${investment.investNum}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <div class="my_yq_page">
-                    <div class="titblue">下一页</div>
-                    <div>上一页</div>
-                    <div><span class="titblue">1</span> / 5 页</div>
+                    <div class="titblue"><a href="${pageContext.request.contextPath}/account/findInvestment?investStatus=${investStatus}&page=${pageInfo.nextPage}&pageSize=5">下一页</a></div>
+                    <div><a href="${pageContext.request.contextPath}/account/findInvestment?investStatus=${investStatus}&page=${pageInfo.prePage}&pageSize=5">上一页</a></div>
+                    <div><span class="titblue">${pageInfo.pageNum}</span> / ${pageInfo.pages} 页</div>
                 </div>
             </div>
-            <div class="my_tz_tab1" style="display:none">
-                <table class="my_hbjf_table">
-                    <thead>
-                    <tr>
-                        <td><div>产品名称</div></td>
-                        <td><div>投资金额</div></td>
-                        <td><div>投资收益</div></td>
-                        <td><div>投资时间</div></td>
-                        <td><div>投资编号</div></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>7000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>7000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>7000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>7000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>7000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="my_yq_page">
-                    <div class="titblue">下一页</div>
-                    <div>上一页</div>
-                    <div><span class="titblue">1</span> / 5 页</div>
-                </div>
-            </div>
-            <div class="my_tz_tab1" style="display:none">
-                <table class="my_hbjf_table">
-                    <thead>
-                    <tr>
-                        <td><div>产品名称</div></td>
-                        <td><div>投资金额</div></td>
-                        <td><div>投资收益</div></td>
-                        <td><div>投资时间</div></td>
-                        <td><div>投资编号</div></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>10000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>10000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>10000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>10000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>10000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="my_yq_page">
-                    <div class="titblue">下一页</div>
-                    <div>上一页</div>
-                    <div><span class="titblue">1</span> / 5 页</div>
-                </div>
-            </div>
-            <div class="my_tz_tab1" style="display:none">
-                <table class="my_hbjf_table">
-                    <thead>
-                    <tr>
-                        <td><div>产品名称</div></td>
-                        <td><div>投资金额</div></td>
-                        <td><div>投资收益</div></td>
-                        <td><div>投资时间</div></td>
-                        <td><div>投资编号</div></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="my_yq_page">
-                    <div class="titblue">下一页</div>
-                    <div>上一页</div>
-                    <div><span class="titblue">1</span> / 5 页</div>
-                </div>
-            </div>
-            <div class="my_tz_tab1" style="display:none">
-                <table class="my_hbjf_table">
-                    <thead>
-                    <tr>
-                        <td><div>产品名称</div></td>
-                        <td><div>投资金额</div></td>
-                        <td><div>投资收益</div></td>
-                        <td><div>投资时间</div></td>
-                        <td><div>投资编号</div></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    <tr>
-                        <td>放心投001</td>
-                        <td>3000.00元</td>
-                        <td>5000元</td>
-                        <td>2015-05-05</td>
-                        <td>GZJR0000000001</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="my_yq_page">
-                    <div class="titblue">下一页</div>
-                    <div>上一页</div>
-                    <div><span class="titblue">1</span> / 5 页</div>
-                </div>
-            </div>
+            <!--投资记录 /-->
+
+
         </div>
     </div>
 </div>
 
 <div class="clear"></div>
 <div class="line"></div>
+<%--产品推荐--%>
 <div class="njmy">
     <div class="mybj_1">产品推荐</div>
     <div class="mybj_2">放心投&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;安心享&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;开心抢</div>
@@ -493,7 +177,7 @@
         <div class="my_more">更多...</div>
     </div>
 </div>
-
+<%--产品推荐    /--%>
 <!-- 底部导航 -->
 <jsp:include page="/static/footer.jsp"></jsp:include>
 <!-- 底部导航 /-->

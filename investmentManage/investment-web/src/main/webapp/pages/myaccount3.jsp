@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -37,117 +37,33 @@ $(function(){
 </head>
 
 <body>
-<div class="header">
-  <div class="heaer_con">
-     <h1 class="header_h1">联系我们：400-888-**88</h1>
-     <div class="header_rightLine"></div>
-     <h1 class="header_h1">关注我们</h1>
-     <div class="header_weixin">
-        <img src="../images/chat.png" />
-     </div>
-     <div class="header_weixinBig">
-        <img src="../images/erweima-1.png" />
-     </div>
-     <ul>
-       <li><a href="zhuce.jsp">注册</a></li>
-       <li><div class="header_rightLine"></div></li>
-       <li><a href="login.jsp">登录</a></li>
-     </ul>
-  </div>
-</div>
+<!-- 页面头部 -->
+<jsp:include page="/static/header.jsp"></jsp:include>
+<!-- 页面头部 /-->
 
-<div class="clear"></div>
-<div class="nav">
-  <div class="nav_logo"><img src="../images/new-logo.png" /></div>
-  <ul class="nav_navs">
-     <a href="main.jsp"><li>首  页</li></a>
-     <a href="mytz.jsp"><li>我要投资</li></a>
-     <a href="myj0k.jsp"><li>我要借款</li></a>
-     <a href="newGuider.jsp"><li>新手引导</li></a>
-     <a href="help.jsp"><li>帮助中心</li></a>
-     <a href="myaccount.jsp"><li class="on">我的帐户</li></a>  
-  </ul>
-</div>
-
-<div class="clear"></div>
-<div class="banner0">
-   <div class="ban_my">
-       <div class="ban_my_left">
-          <div class="ban_my_l1"><img src="../images/shape.png" /></div>
-          <div class="ban_my_l2"><img src="../images/headg.png" /></div>
-          <div class="ban_my_l3">王小小<span>上午好</span></div>
-          <div class="ban_my_l4">
-              <div class="left zhaq">账户安全</div>
-              <div class="left anquan"><img src="../images/acc-safe-ico.png" /></div>
-              <div class="left anquan0">中</div>
-              <div class="left" style="color:#ff8900">提升</div>
-          </div>
-       </div>
-       <div class="ban_my_right">
-          <div class="ban_my_right_up">
-              <div class="left">账户总览</div>
-              <div class="right0">2015-10-10星期六</div>
-          </div>
-          <div class="ban_my_right_down">
-              <div class="ban_my_right_down_l">
-                 <div class="ban_my_d">
-                     <div class="ban_my_d1">
-                        <p class="dp1">总资产</p>
-                        <p class="dp2">0.00元</p>
-                     </div>
-                     <div class="ban_my_d1">
-                        <p class="dp1">总资产</p>
-                        <p class="dp2">0.00元</p>
-                     </div>
-                     <div class="ban_my_d1">
-                        <p class="dp1">总资产</p>
-                        <p class="dp2">0.00元</p>
-                     </div>
-                 </div>
-                 <div class="ban_my_d" style=" border-bottom:0">
-                     <div class="ban_my_d1">
-                        <p class="dp1">我的积分</p>
-                        <p class="dp2">0</p>
-                     </div>
-                     <div class="ban_my_d1">
-                        <p class="dp1">红包</p>
-                        <p class="dp2">0个</p>
-                     </div>
-                     <div class="ban_my_d1">
-                        <p class="dp1">累计收益</p>
-                        <p class="dp2">0.00元</p>
-                     </div>
-                 </div>
-              </div>
-              <div class="ban_my_right_down_c"></div>
-              <div class="ban_my_right_down_r">
-                  <div class="my_ban_btn my_ban_btn1">充值</div>
-                  <div class="my_ban_btn my_ban_btn0">投资</div>
-              </div>
-          </div>
-       </div>
-   </div>
-</div>
+<!-- 用户账户内容头部 -->
+<jsp:include page="/static/account-header.jsp"></jsp:include>
+<!-- 用户账户内容头部 /-->
 
 <div class="main">
    <div class="daohang"><a href="main.jsp">首页</a> > 我的账户</div>
    <div class="dh_line"></div>
    <div class="tunav">
-      <a href="myaccount.jsp"><div class="tunav1">
-         <p>充值提现</p>
-      </div></a>
-      <a href="myaccount1.jsp"><div class="tunav2">
-         <p>我的投资</p>
-      </div></a>
-      <a href="myaccount2.jsp"><div class="tunav3">
-         <p>资金记录</p>
-      </div></a>
-      <a href="myaccount3.jsp"><div class="tunav4 active_nav" style=" height:102px">
-         <p>红包积分</p>
-      </div></a>
-      <a href="myaccount4.jsp"><div class="tunav5">
-         <p>我的邀请</p>
-      </div></a>
+       <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=0"><div class="tunav1 ">
+           <p>充值提现</p>
+       </div></a>
+       <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=1&investStatus=0&page=1&pageSize=5"><div class="tunav2">
+           <p>我的投资</p>
+       </div></a>
+       <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=2&transactionType=0&page=1&pageSize=5"><div class="tunav3">
+           <p>资金记录</p>
+       </div></a>
+       <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=3"><div class="tunav4 active_nav" style=" height:102px">
+           <p>红包积分</p>
+       </div></a>
+       <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=4"><div class="tunav5">
+           <p>我的邀请</p>
+       </div></a>
    </div>
    <div class="xhx_line">
       <div class="xhx_line_l3"></div>
@@ -371,12 +287,8 @@ $(function(){
    </div>
 </div>
 
-<div class="clear"></div>
-<div class="footer">
-   <div class="footer_m">
-       <div class="footer_l">使用条款 | 隐私保护</div>
-       <div class="footer_r">© 2015 （杭州）金融信息服务有限公司    杭ICP备0000000号</div>
-   </div>
-</div>
+<!-- 底部导航 -->
+<jsp:include page="/static/footer.jsp"></jsp:include>
+<!-- 底部导航 /-->
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 
 <!-- 页面头部 -->
 <div class="header">
@@ -24,12 +24,12 @@
 <div class="nav">
     <div class="nav_logo"><img src="../images/new-logo.png" /></div>
     <ul class="nav_navs">
-        <a href="../pages/index.jsp"><li>首  页</li></a>
+        <a href="../pages/main.jsp"><li>首  页</li></a>
         <a href="../pages/mytz.jsp"><li>我要投资</li></a>
         <a href="../pages/myj0k.jsp"><li>我要借款</li></a>
         <a href="../pages/newGuider.jsp"><li>新手引导</li></a>
         <a href="../pages/help.jsp"><li>帮助中心</li></a>
-        <a href="../pages/myaccount.jsp"><li class="on">我的帐户</li></a>
+        <a href="${pageContext.request.contextPath}/account/findAccount?accountPage=0"><li class="on">我的帐户</li></a>
     </ul>
 </div>
 <!-- 页面头部 /-->

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,37 +12,10 @@
 </head>
 
 <body>
-<div class="header">
-    <div class="heaer_con">
-        <h1 class="header_h1">联系我们：400-888-**88</h1>
-        <div class="header_rightLine"></div>
-        <h1 class="header_h1">关注我们</h1>
-        <div class="header_weixin">
-            <img src="../images/chat.png" />
-        </div>
-        <div class="header_weixinBig">
-            <img src="../images/erweima-1.png" />
-        </div>
-        <ul>
-            <li><a href="zhuce.jsp">注册</a></li>
-            <li><div class="header_rightLine"></div></li>
-            <li><a href="login.jsp">登录</a></li>
-        </ul>
-    </div>
-</div>
 
-<div class="clear"></div>
-<div class="nav">
-    <div class="nav_logo"><img src="../images/new-logo.png" /></div>
-    <ul class="nav_navs">
-        <a href="main.jsp"><li class="on">首  页</li></a>
-        <a href="mytz.jsp"><li>我要投资</li></a>
-        <a href="myj0k.jsp"><li>我要借款</li></a>
-        <a href="newGuider.jsp"><li>新手引导</li></a>
-        <a href="help.jsp"><li>帮助中心</li></a>
-        <a href="myaccount.jsp"><li>我的帐户</li></a>
-    </ul>
-</div>
+<!-- 页面头部 -->
+<jsp:include page="/static/header.jsp"></jsp:include>
+<!-- 页面头部 /-->
 
 <div class="clear"></div>
 <div class="fullSlide">

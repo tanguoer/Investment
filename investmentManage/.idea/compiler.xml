@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="investment-service" />
-        <module name="investment-utils" />
         <module name="investment-dao" />
-        <module name="investment-web" />
+        <module name="investment-utils" />
         <module name="investment-domain" />
+        <module name="investment-web" />
       </profile>
     </annotationProcessing>
   </component>
